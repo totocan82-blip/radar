@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>둉굥이 공고레이더</title>
+<title>둉굥이 공고 수집기</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap">
 <style>
 :root{--g:#173a33;--g2:#1f4d44;--lime:#d4f28c;--bg:#eef3f1;--card:#fff;--ink:#16241f;--sub:#5f6f69;--line:#dbe4e0;--red:#d6453d;--amber:#fff6dd;--amberline:#ecd28a}
@@ -75,7 +75,7 @@ table{background:var(--card)}
 <body>
 <header class="hero"><div class="wrap">
   <div class="eyebrow" id="eyebrow">충북 · 경기 · 서울 지자체 + 나라장터</div>
-  <h1>둉굥이 공고레이더</h1>
+  <h1>둉굥이 공고 수집기</h1>
   <p>특정공법 · 특허 · 신기술 제안서 공고와 심의·평가위원 모집을 모아 확인하세요.<br>찾은 공고와 확인하지 못한 기관을 함께 보여줍니다.</p>
   <div class="made" id="made"></div>
 </div></header>
@@ -161,7 +161,7 @@ function render(){
 ['#q','#fr','#ff','#fk','#fg','#fo','#fs','#fn'].forEach(s => $(s).addEventListener('input', render));
 document.querySelectorAll('.tab').forEach(b => b.onclick = () => { document.querySelectorAll('.tab,.panel').forEach(e=>e.classList.remove('on')); b.classList.add('on'); $('#'+b.dataset.p).classList.add('on'); });
 function dl(name, head, data){ const c = [head, ...data].map(r => r.map(v => '"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob(['﻿'+c],{type:'text/csv'})); a.download=name; a.click(); }
-$('#csv').onclick = () => dl('공고레이더.csv', ['구분','종류','상태','지역','기관','제목','분야','금액','날짜','마감','마감됨','개찰','낙찰사','낙찰률','참가업체수','대표','전화','주소','링크'], rows().map(r=>[r.구분,r.종류,r.상태,r.지역,r.기관,r.제목,r.분야.join('/'),r.금액,r.날짜,r.마감,r.마감됨?'마감':'',r.개찰,r.낙찰사,r.낙찰률,r.참가,r.대표,r.전화,r.주소,r.링크]));
+$('#csv').onclick = () => dl('공고수집기.csv', ['구분','종류','상태','지역','기관','제목','분야','금액','날짜','마감','마감됨','개찰','낙찰사','낙찰률','참가업체수','대표','전화','주소','링크'], rows().map(r=>[r.구분,r.종류,r.상태,r.지역,r.기관,r.제목,r.분야.join('/'),r.금액,r.날짜,r.마감,r.마감됨?'마감':'',r.개찰,r.낙찰사,r.낙찰률,r.참가,r.대표,r.전화,r.주소,r.링크]));
 $('#csv2').onclick = () => dl('기관현황.csv', ['기관','지역','상태','읽은 글','주소','7일 넘어 처음 읽은 글','7일 안 글'], D.기관);
 $('#apitab').innerHTML = '<tr><th>나라장터(조달청 데이터)</th><th>상태</th><th>확인 내용</th></tr>' + D.나라장터.map(x=>`<tr><td><b>${esc(x[0])}</b></td><td class="${x[1]==='수집완료'?'ok':'bad'}">${esc(x[1])}</td><td>${esc(x[2])}</td></tr>`).join('');
 $('#sitetab').innerHTML = '<tr><th>기관</th><th>지역</th><th>상태</th><th>7일 안 글 / 읽은 글</th><th>7일 넘어 처음 읽은 글</th><th>게시판 주소</th></tr>' + D.기관.map(x=>`<tr><td><b>${esc(x[0])}</b></td><td>${esc(x[1])}</td><td class="${x[2]==='수집완료'?'ok':'bad'}">${esc(x[2])}</td><td>${esc(x[6]??'')} / ${esc(x[3])}건</td><td>${esc(x[5]||'')}</td><td><a href="${esc(x[4])}" target="_blank">${esc(x[4].slice(0,60))}${x[4].length>60?'…':''}</a></td></tr>`).join('');
