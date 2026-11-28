@@ -80,9 +80,17 @@ table{background:var(--card)}
 #rd .sub{color:#666;font-size:15px;margin-bottom:14px}#rd .dl{background:#fff4d6;border-radius:10px;padding:12px 14px;font-size:17px;margin-bottom:14px}
 #rd .txt{white-space:pre-wrap;font-size:18px;line-height:1.85;word-break:keep-all}
 #rd .att a{display:block;background:#eef5f2;border-radius:10px;padding:13px 14px;margin:8px 0;color:#1c6b57;font-weight:700;font-size:16px;text-decoration:none;word-break:break-all}
+#sp{position:fixed;inset:0;z-index:200;background:#04140a;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s}
+#sp.out{opacity:0;pointer-events:none}
+#sp .rw{position:relative;width:min(78vw,78vh,420px);aspect-ratio:1}
+#sp .rw img{position:absolute;inset:0;width:100%;height:100%}
+#sp .sw{position:absolute;inset:6.4%;border-radius:50%;background:conic-gradient(from 0deg,rgba(150,255,120,0) 0deg,rgba(150,255,120,0) 290deg,rgba(150,255,120,.55) 358deg,rgba(200,255,180,.95) 360deg);animation:spin 1.5s linear infinite}
+#sp .sw:after{content:"";position:absolute;left:50%;top:0;width:3px;height:50%;background:#c8ffb0;box-shadow:0 0 12px #9f9;transform:translateX(-50%)}
+#sp p{color:#b9f5a8;font:900 22px "Noto Sans KR","Malgun Gothic",sans-serif;letter-spacing:3px;margin-top:26px;animation:blink 1s infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes blink{50%{opacity:.35}}
 </style>
 </head>
-<body><div id="rd"><div class="bar"><b>공고 크게 보기</b><button onclick="history.back()">닫기 ✕</button></div><div class="in" id="rdin"></div></div>
+<body><div id="sp" onclick="this.classList.add('out')"><div class="rw"><img src="splash.png" alt=""><div class="sw"></div></div><p>공고 탐색 중…</p></div><div id="rd"><div class="bar"><b>공고 크게 보기</b><button onclick="history.back()">닫기 ✕</button></div><div class="in" id="rdin"></div></div>
 <header class="hero"><div class="wrap">
   <div class="eyebrow" id="eyebrow">충북 · 경기 · 서울 · 대전 지자체 + 나라장터</div>
   <h1>동굥이 공고 레이더</h1>
@@ -163,6 +171,7 @@ function openRd(id){
 }
 function closeRd(){ if($('#rd').style.display==='block'){ $('#rd').style.display='none'; } }
 window.addEventListener('popstate', closeRd);
+setTimeout(()=>{const s=document.getElementById('sp'); s.classList.add('out'); setTimeout(()=>s.remove(),700);},3000);
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 function render(){
   const rs = rows();
