@@ -72,7 +72,7 @@ table{background:var(--card)}
 .row label{margin-right:10px}
 #sitetab td:nth-child(-n+4),#sitetab th:nth-child(-n+4){white-space:nowrap}
 #sitetab{display:block;overflow-x:auto}
-.rbtn{border:0;background:#1c6b57;color:#fff;border-radius:10px;padding:9px 14px;font:700 15px "Noto Sans KR","Malgun Gothic",sans-serif;cursor:pointer;margin-right:8px}
+.rbtn{border:0;background:#1c6b57;color:#fff;border-radius:10px;padding:11px 18px;font:900 17px "Noto Sans KR","Malgun Gothic",sans-serif;cursor:pointer;margin-right:8px}
 #rd{position:fixed;inset:0;background:#fff;z-index:99;display:none;overflow:auto;-webkit-overflow-scrolling:touch}
 #rd .bar{position:sticky;top:0;background:#1c6b57;color:#fff;display:flex;align-items:center;gap:10px;padding:12px 14px}
 #rd .bar b{flex:1;font-size:16px}#rd .bar button{border:0;background:#fff;color:#1c6b57;border-radius:8px;padding:8px 14px;font-weight:900;font-size:16px}
@@ -178,10 +178,10 @@ function render(){
         : (r.마감상태==='마감일 미확인' ? '<br><b>마감일 미확인</b> — 공고문·첨부파일에서 마감일을 못 찾음(보안 걸린 파일 등), 원문에서 확인' : '')}`
       : `공고 ${esc(r.날짜)} · 마감 ${esc(r.마감||'')} · 개찰 ${esc(r.개찰||'')}${r.현장?' · 현장 '+esc(r.현장):''}`;
     return `<div class="card ${r.우선?'hot':''} ${r.마감됨?'done':''}"><div class="ctop"><span class="org">${esc(r.기관)}</span>${r.금액?`<b>${esc(r.금액)}</b>`:''}<button class="star ${saved[r.id]?'on':''}" data-id="${esc(r.id)}" title="저장">${saved[r.id]?'★':'☆'}</button></div>
-      <div class="chips">${chips}</div><a class="title" href="${esc(r.링크)}" target="_blank">${mark(r.제목, r.키워드||[])}</a><div class="meta">${meta}</div>${rel}
-      <div class="foot"><span>${gosi&&r.본문?`<button class="rbtn" data-rd="${esc(r.id)}">📱 크게 보기</button>`:(win?'영업 연락용':'원문 확인')}</span><a href="${esc(r.링크)}" target="_blank">${win?'나라장터 공고 열기':'공고문 열기'}</a></div></div>`;
+      <div class="chips">${chips}</div>${gosi&&r.본문?`<a class="title" href="#" data-rd="${esc(r.id)}">${mark(r.제목, r.키워드||[])}</a>`:`<a class="title" href="${esc(r.링크)}" target="_blank">${mark(r.제목, r.키워드||[])}</a>`}<div class="meta">${meta}</div>${rel}
+      <div class="foot"><span>${gosi&&r.본문?`<button class="rbtn" data-rd="${esc(r.id)}">📱 크게 보기</button>`:(win?'영업 연락용':'원문 확인')}</span><a href="${esc(r.링크)}" target="_blank">${win?'나라장터 공고 열기':(gosi&&r.본문?'원래 화면(PC)':'공고문 열기')}</a></div></div>`;
   }).join('') : '<div class="empty">조건에 맞는 공고가 없어요.</div>';
-  document.querySelectorAll('[data-rd]').forEach(b => b.onclick = () => openRd(b.dataset.rd));
+  document.querySelectorAll('[data-rd]').forEach(b => b.onclick = e => { e.preventDefault(); openRd(b.dataset.rd); });
   document.querySelectorAll('.star').forEach(b => b.onclick = () => { const id=b.dataset.id; if(saved[id]) delete saved[id]; else saved[id]=1; save(); render(); });
 }
 ['#q','#fr','#ff','#fk','#fg','#fo','#fs','#fn'].forEach(s => $(s).addEventListener('input', render));
