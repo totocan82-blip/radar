@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>동굥이 공고 레이더</title>
 <link rel="manifest" href="manifest.json"><meta name="theme-color" content="#1c6b57">
-<link rel="apple-touch-icon" href="icon2-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="공고 레이더">
+<link rel="apple-touch-icon" href="icon3-192.png"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="공고 레이더">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap">
 <style>
 :root{--g:#173a33;--g2:#1f4d44;--lime:#d4f28c;--bg:#eef3f1;--card:#fff;--ink:#16241f;--sub:#5f6f69;--line:#dbe4e0;--red:#d6453d;--amber:#fff6dd;--amberline:#ecd28a}
@@ -80,17 +80,17 @@ table{background:var(--card)}
 #rd .sub{color:#666;font-size:15px;margin-bottom:14px}#rd .dl{background:#fff4d6;border-radius:10px;padding:12px 14px;font-size:17px;margin-bottom:14px}
 #rd .txt{white-space:pre-wrap;font-size:18px;line-height:1.85;word-break:keep-all}
 #rd .att a{display:block;background:#eef5f2;border-radius:10px;padding:13px 14px;margin:8px 0;color:#1c6b57;font-weight:700;font-size:16px;text-decoration:none;word-break:break-all}
-#sp{position:fixed;inset:0;z-index:200;background:#04140a;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s}
+#sp{position:fixed;inset:0;z-index:200;background:#040c1e;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s}
 #sp.out{opacity:0;pointer-events:none}
 #sp .rw{position:relative;width:min(78vw,78vh,420px);aspect-ratio:1}
 #sp .rw img{position:absolute;inset:0;width:100%;height:100%}
-#sp .sw{position:absolute;inset:6.4%;border-radius:50%;background:conic-gradient(from 0deg,rgba(150,255,120,0) 0deg,rgba(150,255,120,0) 290deg,rgba(150,255,120,.55) 358deg,rgba(200,255,180,.95) 360deg);animation:spin 3s linear infinite}
-#sp .sw:after{content:"";position:absolute;left:50%;top:0;width:3px;height:50%;background:#c8ffb0;box-shadow:0 0 12px #9f9;transform:translateX(-50%)}
+#sp .sw{position:absolute;inset:6.4%;border-radius:50%;background:conic-gradient(from 0deg,rgba(120,200,255,0) 0deg,rgba(120,200,255,0) 290deg,rgba(120,200,255,.55) 358deg,rgba(190,230,255,.95) 360deg);animation:spin 3s linear infinite}
+#sp .sw:after{content:"";position:absolute;left:50%;top:0;width:3px;height:50%;background:#bfe6ff;box-shadow:0 0 12px #8cf;transform:translateX(-50%)}
 #sp p{color:#b9f5a8;font:900 22px "Noto Sans KR","Malgun Gothic",sans-serif;letter-spacing:3px;margin-top:26px;animation:blink 1s infinite}
 @keyframes spin{to{transform:rotate(360deg)}}@keyframes blink{50%{opacity:.35}}
 </style>
 </head>
-<body><div id="sp" onclick="this.classList.add('out')"><div class="rw"><img src="splash.png" alt=""><div class="sw"></div></div></div><div id="rd"><div class="bar"><b>공고 크게 보기</b><button onclick="history.back()">닫기 ✕</button></div><div class="in" id="rdin"></div></div>
+<body><div id="sp" onclick="this.classList.add('out')"><div class="rw"><img src="splash2.png" alt=""><div class="sw"></div></div></div><div id="rd"><div class="bar"><b>공고 크게 보기</b><button onclick="history.back()">닫기 ✕</button></div><div class="in" id="rdin"></div></div>
 <header class="hero"><div class="wrap">
   <div class="eyebrow" id="eyebrow">충북 · 경기 · 서울 · 대전 지자체 + 나라장터</div>
   <h1>동굥이 공고 레이더</h1>
